@@ -120,7 +120,7 @@ def initialize_engine() -> LLMEngine:
     #   use the same rank, it is recommended to set this as low as possible.
     # max_cpu_loras: controls the size of the CPU LoRA cache.
     engine_args = EngineArgs(
-        model="microsoft/phi-2",  # "meta-llama/Llama-2-7b-hf",
+        model="meta-llama/Llama-2-7b-hf",  # "microsoft/phi-2",  # "meta-llama/Llama-2-7b-hf",
         enable_lora=True,
         max_loras=1,
         max_lora_rank=8,
