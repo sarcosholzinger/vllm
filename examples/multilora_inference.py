@@ -12,6 +12,8 @@ from huggingface_hub import snapshot_download
 from vllm import EngineArgs, LLMEngine, RequestOutput, SamplingParams
 from vllm.lora.request import LoRARequest
 
+import os
+
 
 def create_test_prompts(
     lora_path: str,
@@ -135,8 +137,10 @@ def initialize_engine() -> LLMEngine:
 
 def main():
     """Main function that sets up and runs the prompt processing."""
+    os.environ["VLLM_ALLOW_DEPRECATED_BEAM_SEARCH"] = "1"
     engine = initialize_engine()
-    lora_path = snapshot_download(repo_id="yard1/llama-2-7b-sql-lora-test")
+    # lora_path = snapshot_download(repo_id="yard1/llama-2-7b-sql-lora-test")
+    lora_path = "~/dnn-box/lora_model_saved"
     test_prompts = create_test_prompts(lora_path)
     process_requests(engine, test_prompts)
 
