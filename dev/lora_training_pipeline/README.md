@@ -57,3 +57,45 @@ pipeline = LoRATrainingPipeline("meta-llama/Llama-2-7b-hf", "lora_config.conf")
 pipeline.load_base_model_and_tokenizer()
 pipeline.train_model()
 ```
+
+### Debugging with `launch.json` in VS Code
+
+Add the following configuration to the `launch.json` file:
+
+```json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: Debug LoRA Pipeline",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/dev/lora_training_pipeline/lora_pipeline.py",
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "env": {
+        "VLLM_ALLOW_DEPRECATED_BEAM_SEARCH": "1"
+      },
+      "args": []
+    }
+  ]
+}
+```
+
+#### Explanation of the Configuration
+
+- **`name`**: The name of the debug configuration. You can change this to something more descriptive, like `"Python: Debug LoRA Pipeline"`.
+- **`type`**: This should be `"python"`, specifying that you're debugging a Python script.
+- **`request`**: Use `"launch"` to launch and debug the Python file.
+- **`program`**: This should point to the Python file you want to debug. Replace `"path/to/your_script.py"` with the relative path to your Python script.
+- **`console`**: `"integratedTerminal"` runs the script in VS Code’s terminal.
+- **`justMyCode`**: Set this to `false` if you want to debug inside third-party libraries (like `peft` or `transformers`).
+- **`env`**: Sets environment variables. For instance, in this case, the `VLLM_ALLOW_DEPRECATED_BEAM_SEARCH` environment variable is set to `"1"`.
+- **`args`**: This can be used to pass any additional command-line arguments to your script.
+
+#### 4. Start Debugging
+
+To start debugging:
+
+1. Open the script you want to debug in VS Code.
+2. Press `F5` or go to **Run > Start Debugging**.
