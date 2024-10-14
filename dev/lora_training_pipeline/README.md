@@ -12,10 +12,8 @@ This repository implements a Low-Rank Adaptation (LoRA) fine-tuning pipeline for
 
 1. **Clone the repository**:
 
-   #TODO: update git repo
-
    ```bash
-   git clone https://github.com/sarcosholzinger/vllm/lora-training-pipeline.git
+   git clone https://github.com/sarcosholzinger/vllm/blob/main/dev/lora_training_pipeline/lora_pipeline.py
    cd lora-training-pipeline
    ```
 
@@ -47,7 +45,7 @@ This repository implements a Low-Rank Adaptation (LoRA) fine-tuning pipeline for
 To run the training pipeline:
 
 ```bash
-python your_script.py
+python lora_pipeline.py
 ```
 
 ### Using as a Module
